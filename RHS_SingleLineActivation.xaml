@@ -1,0 +1,770 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="RHS_SingleLineActivation" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="TC_Name" Type="InOutArgument(x:String)" />
+    <x:Property Name="Username" Type="InOutArgument(x:String)" />
+    <x:Property Name="Password" Type="InOutArgument(x:String)" />
+    <x:Property Name="BAN" Type="InOutArgument(x:String)" />
+    <x:Property Name="ActType" Type="InOutArgument(x:String)" />
+    <x:Property Name="PurchaseType" Type="InOutArgument(x:String)" />
+    <x:Property Name="lnCnt" Type="InOutArgument(x:Int32)" />
+    <x:Property Name="SOC" Type="InOutArgument(x:String)" />
+    <x:Property Name="TradeIn_ESN" Type="InOutArgument(x:String)" />
+    <x:Property Name="TrxnNum" Type="InOutArgument(x:String)" />
+    <x:Property Name="SKU" Type="InOutArgument(x:String)" />
+    <x:Property Name="ESN" Type="InOutArgument(x:String)" />
+    <x:Property Name="resultPath" Type="InArgument(x:String)" />
+    <x:Property Name="curAppWin" Type="InOutArgument(ui:Window)" />
+    <x:Property Name="ssFileName" Type="InOutArgument(x:String)" />
+    <x:Property Name="sTime" Type="InOutArgument(x:String)" />
+    <x:Property Name="eTime" Type="InOutArgument(x:String)" />
+    <x:Property Name="DeviceInfoDataTable" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="PTN" Type="InOutArgument(x:String)" />
+    <x:Property Name="Env" Type="InOutArgument(x:String)" />
+    <x:Property Name="ADID" Type="InArgument(x:String)" />
+    <x:Property Name="Channel" Type="InArgument(x:String)" />
+    <x:Property Name="Psw" Type="InArgument(x:String)" />
+    <x:Property Name="logTool_URL" Type="InArgument(x:String)" />
+    <x:Property Name="ValidateURL" Type="OutArgument(x:String)" />
+    <x:Property Name="DB_Name" Type="InArgument(x:String)" />
+    <x:Property Name="DB_status" Type="InOutArgument(x:String)" />
+    <x:Property Name="imageList" Type="InOutArgument(scg:List(ui:Image))" />
+    <x:Property Name="excelPath" Type="InArgument(x:String)" />
+    <x:Property Name="AttachmentList" Type="InOutArgument(scg:List(x:String))" />
+    <x:Property Name="dicVariable" Type="InOutArgument(scg:Dictionary(x:String, x:Int32))" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>779,7325</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>RHS_SingleLineActivation_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="36">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Threading.Tasks</x:String>
+      <x:String>System.Threading</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>Microsoft.Activities.Extensions.Statements</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="34">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Threading.Tasks.Extensions</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Activities.Extensions</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="RHS_SingleLineActivation" sap:VirtualizedContainerService.HintSize="606,7160" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="hour" />
+      <Variable x:TypeArguments="x:String" Name="minute" />
+      <Variable x:TypeArguments="x:Boolean" Name="monthlyChargedExist" />
+      <Variable x:TypeArguments="x:Int32" Name="dvcRowIndx" />
+      <Variable x:TypeArguments="x:TimeSpan" Name="subtotalTime" />
+      <Variable x:TypeArguments="x:TimeSpan" Name="totalTime" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:Int32)" Name="dicVariable" />
+      <Variable x:TypeArguments="x:String" Name="dicPTN" />
+      <Variable x:TypeArguments="x:Int32" Name="dicPTN1" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke LaunchRMS Workflow File" sap:VirtualizedContainerService.HintSize="564,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="CommonFlow\LaunchRMS.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="userName">[Username]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+        <OutArgument x:TypeArguments="ui:Window" x:Key="curAppWin">[curAppWin]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeWorkflowFile>
+    <Assign sap:VirtualizedContainerService.HintSize="564,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[ssFileName]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[TC_Name]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="564,6816" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <Sequence DisplayName="Activation flow" sap:VirtualizedContainerService.HintSize="526,6589" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="vE_time" />
+            <Variable x:TypeArguments="x:String" Name="vS_time" />
+            <Variable x:TypeArguments="x:String" Name="FinalFolder" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke CreateSSFile flow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="CommonFlow\CreateSSFile.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InOutArgument x:TypeArguments="x:String" x:Key="resultPath">[resultPath]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="ssFileName">[ssFileName]</InOutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke get sTime flow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="CommonFlow\CalculateTime.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <OutArgument x:TypeArguments="x:String" x:Key="curTime">[sTime]</OutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke SearchBAN workflow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="CommonFlow\SearchBAN.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="userName">[Username]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="BAN">[BAN]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeWorkflowFile>
+          <ui:WaitUiElementAppear FoundElement="{x:Null}" WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Element 'INPUT  userId'" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1">
+            <ui:WaitUiElementAppear.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="bd25e04c-8d0b-4570-83c5-75ef3f42e722" InformativeScreenshot="a06c04ad2007823e41dc96199b0a297f" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl id='userId' tag='INPUT' type='text' /&gt;" WaitForReady="COMPLETE">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+              </ui:Target>
+            </ui:WaitUiElementAppear.Target>
+          </ui:WaitUiElementAppear>
+          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="scg:List(ui:Image)">[imageList]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="scg:List(ui:Image)">[new List(Of UiPath.Core.Image)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke takeScreenShot flow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="CommonFlow\TakeScreenShot.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="ui:Window" x:Key="curAppWin">[curAppWin]</InArgument>
+              <InOutArgument x:TypeArguments="scg:List(ui:Image)" x:Key="imageList">[imageList]</InOutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeWorkflowFile>
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON  salesTab'" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="686d15ae-662a-488f-8391-65bcc05632c5" InformativeScreenshot="0a3a250c809ab82891c2ff15eb7bf859" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl idx='1' tag='BUTTON' /&gt;">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+                <ui:Target.WaitForReady>
+                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                </ui:Target.WaitForReady>
+              </ui:Target>
+            </ui:Click.Target>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:Click>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke ReadDeviceInfoFromExcel flow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="CommonFlow\ReadDeviceInfo.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <OutArgument x:TypeArguments="x:String" x:Key="SKU">[SKU]</OutArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="ESN">[ESN]</OutArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="lnCnt">[lnCnt]</InArgument>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="DeviceInfoDataTable">[DeviceInfoDataTable]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeWorkflowFile>
+          <Delay Duration="00:00:00.5000000" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke EnterSKU_ESN flow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="CommonFlow\EnterDeviceInfo.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="SKU">[SKU]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="ESN">[ESN]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeWorkflowFile>
+          <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="Delay_2" />
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke takeScreenShot flow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="CommonFlow\TakeScreenShot.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="ui:Window" x:Key="curAppWin">[curAppWin]</InArgument>
+              <InOutArgument x:TypeArguments="scg:List(ui:Image)" x:Key="imageList">[imageList]</InOutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeWorkflowFile>
+          <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="Delay_4" />
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  pricingLink'" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="Click_9" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="37401423-dc6e-4374-9d5b-4804f676d1c2" InformativeScreenshot="3583bb2dfbd0dba2be3e7d76ba5083d4" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl id='pricingLink' tag='A' /&gt;" TimeoutMS="5000" WaitForReady="COMPLETE" />
+            </ui:Click.Target>
+          </ui:Click>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Payment Selection flow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="CommonFlow\PaymentSelection_SingleLine.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="ActType">[ActType]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="PurchaseType">[PurchaseType]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TradeIn_ESN">[TradeIn_ESN]</InArgument>
+              <InArgument x:TypeArguments="ui:Window" x:Key="curAppWin">[curAppWin]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="upgradePTN" />
+              <InArgument x:TypeArguments="x:String" x:Key="upgradeWith" />
+              <InArgument x:TypeArguments="x:String" x:Key="UserName">[Username]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InArgument>
+              <InOutArgument x:TypeArguments="scg:List(ui:Image)" x:Key="imageList">[imageList]</InOutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeWorkflowFile>
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON  servicesTab'" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f79fe617-1519-4e4a-bbfa-889365149728" InformativeScreenshot="6217e610fe4e24a7671b77e3d42c1db1" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl id='servicesTab' tag='BUTTON' /&gt;" WaitForReady="COMPLETE">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+              </ui:Target>
+            </ui:Click.Target>
+          </ui:Click>
+          <ui:UiElementExists DisplayName="Element Exists 'rms_web.exe '" Exists="[monthlyChargedExist]" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+            <ui:UiElementExists.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="01d54fe6-a1a0-442f-a4a2-bc8903beb7ba" InformativeScreenshot="6543fafde5863771c0ecab08de7890bb" Selector="&lt;wnd app='rms_web.exe' cls='Internet Explorer_TridentDlgFrame' title='________________________________________________________________*' /&gt;" TimeoutMS="1500">
+                <ui:Target.WaitForReady>
+                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                </ui:Target.WaitForReady>
+              </ui:Target>
+            </ui:UiElementExists.Target>
+          </ui:UiElementExists>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="484,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Monthly Adjustment Credit window exist=&quot;+monthlyChargedExist.ToString]" />
+          <If Condition="[monthlyChargedExist]" sap:VirtualizedContainerService.HintSize="484,254" sap2010:WorkflowViewState.IdRef="If_1">
+            <If.Then>
+              <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  okButton'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT">
+                <ui:Click.CursorPosition>
+                  <ui:CursorPosition Position="Center">
+                    <ui:CursorPosition.OffsetX>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetX>
+                    <ui:CursorPosition.OffsetY>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:CursorPosition.OffsetY>
+                  </ui:CursorPosition>
+                </ui:Click.CursorPosition>
+                <ui:Click.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="03545284-41d7-471b-9687-4eca9d173419" InformativeScreenshot="eedf26e3fc731e73f5ccbbc95852efd2" Selector="&lt;html app='rms_web.exe' title='____________________________________________________________________________________________' /&gt;&lt;webctrl tag='INPUT' type='button' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:Click.Target>
+              </ui:Click>
+            </If.Then>
+          </If>
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  subscriptionInformat...'" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="Click_7" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4c92080f-ce83-434b-9ef7-3203ebb28ea5" InformativeScreenshot="69c916b327357dbb6ec63deb3de192d5" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl id='subscriptionInformation' tag='A' /&gt;" WaitForReady="COMPLETE">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+              </ui:Target>
+            </ui:Click.Target>
+          </ui:Click>
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  javascript:createSub...'" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="Click_8" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a8b11f18-fe42-4244-a845-3e7d94f5b82b" InformativeScreenshot="f2fbe2d9c0abe6093c86c166e4d3552a" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl idx='1' parentid='divDevices' tag='A' /&gt;" WaitForReady="COMPLETE">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+              </ui:Target>
+            </ui:Click.Target>
+          </ui:Click>
+          <ui:WaitUiElementVanish WaitNotActive="{x:Null}" DisplayName="Wait Element Vanish 'A  javascript:createSub...'" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="WaitUiElementVanish_1" WaitNotVisible="True">
+            <ui:WaitUiElementVanish.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f3f2a39f-f0ff-49dd-9356-efb78a02fb3c" InformativeScreenshot="1c24cccc1bd4cc7c9cebfd50dcac58a0" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl idx='1' parentid='divDevices' tag='A' /&gt;">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+                <ui:Target.WaitForReady>
+                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                </ui:Target.WaitForReady>
+              </ui:Target>
+            </ui:WaitUiElementVanish.Target>
+          </ui:WaitUiElementVanish>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Activate New Line flow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="CommonFlow/ActivateNewLine.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="SOC">[SOC]</InArgument>
+              <InArgument x:TypeArguments="ui:Window" x:Key="curAppWin">[curAppWin]</InArgument>
+              <InOutArgument x:TypeArguments="scg:List(ui:Image)" x:Key="imageList">[imageList]</InOutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="userName">[Username]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="password">[Password]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeWorkflowFile>
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON  consentTab'" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f9a285dd-bdee-4f70-9d1f-2cfb17b109a3" InformativeScreenshot="9a3c37c49d9bd16f68a8bbb2149c8693" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl id='consentTab' tag='BUTTON' /&gt;" WaitForReady="COMPLETE">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+              </ui:Target>
+            </ui:Click.Target>
+          </ui:Click>
+          <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="Delay_3" />
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Consent Single line flow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="CommonFlow\Consent_singleLine.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InOutArgument x:TypeArguments="x:String" x:Key="UserName">[Username]</InOutArgument>
+              <InOutArgument x:TypeArguments="x:String" x:Key="Password">[Password]</InOutArgument>
+              <InArgument x:TypeArguments="ui:Window" x:Key="curAppWin">[curAppWin]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="resultPath">[resultPath]</InArgument>
+              <InOutArgument x:TypeArguments="scg:List(ui:Image)" x:Key="imageList">[imageList]</InOutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeWorkflowFile>
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON  salesTab'" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="063e901e-794f-43ca-b464-a4d7afe83a43" InformativeScreenshot="e85c97a77db20bb7fa481247567422cc" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl id='salesTab' tag='BUTTON' /&gt;" WaitForReady="COMPLETE">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+              </ui:Target>
+            </ui:Click.Target>
+          </ui:Click>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Tender flow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="CommonFlow\Tender_Flow.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="ui:Window" x:Key="curAppWin">[curAppWin]</InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="TrxnNum">[TrxnNum]</OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="PurchaseType">[PurchaseType]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="resultPath">[resultPath]</InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="PTN">[PTN]</OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="ssFileName">[ssFileName]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="SKU">[SKU]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="ESN">[ESN]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="BAN">[BAN]</InArgument>
+              <InOutArgument x:TypeArguments="scg:List(ui:Image)" x:Key="imageList">[imageList]</InOutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke get eTime flow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="CommonFlow\CalculateTime.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <OutArgument x:TypeArguments="x:String" x:Key="curTime">[eTime]</OutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:LogMessage DisplayName="RMS execution time message" sap:VirtualizedContainerService.HintSize="484,91" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;RMS : Started at=&quot;+sTime+&quot;-----, Ended at=&quot;+eTime + &quot;total=&quot;+Convert.ToString(DateTime.Parse(eTime) -DateTime.Parse(sTime))]" />
+          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vS_Time]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[Now.ToString("HH:mm:ss")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_22" UnSafe="False" WorkflowFileName="CommonFlow\SaveSSFile.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="resultPath">[resultPath]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="ssFileName">[ssFileName]</InArgument>
+              <InArgument x:TypeArguments="scg:List(ui:Image)" x:Key="imageList">[imageList]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="BAN">[BAN]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="PTN">[PTN]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="SKU">[SKU]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="ESN">[ESN]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TrxnNum">[TrxnNum]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="savingType">normal</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vE_Time]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[Now.ToString("HH:mm:ss")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:LogMessage DisplayName="SavingSS file execution time message" sap:VirtualizedContainerService.HintSize="484,91" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Saving SS File:  Started at =&quot;+vS_Time+&quot;-----, Ended at=&quot;+vE_Time + &quot;total=&quot; + Convert.ToString(DateTime.Parse(vE_Time) - DateTime.Parse(vS_Time))]" />
+          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vS_Time]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[Now.ToString("HH:mm:ss")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Save result flow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" UnSafe="False" WorkflowFileName="CommonFlow\SaveResult2Excel.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="TC_Name">[TC_Name]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="UserID">[Username]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="start_time">[sTime]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="end_time">[eTime]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="TrxnNum">[TrxnNum]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Used_SKU">[SKU]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Used_ESN">[ESN]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="BAN">[BAN]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="PTN">[PTN]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="resultPath">[resultPath]</InArgument>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="DeviceInfoDataTable">[DeviceInfoDataTable]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="ActType">[ActType]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="excelPath">[excelPath]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vE_Time]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[Now.ToString("HH:mm:ss")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:LogMessage DisplayName="Saving2Excel file execution time message" sap:VirtualizedContainerService.HintSize="484,91" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Save2Excel: Started at=&quot;+vS_Time+&quot;-----,Ended at=&quot;+vE_Time+ &quot;total=&quot; + Convert.ToString(DateTime.Parse(vE_Time) - DateTime.Parse(vS_Time))]" />
+          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vS_Time]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[Now.ToString("HH:mm:ss")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Fetching Logs flow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="CommonFlow\FetchingLogsFlow_Old.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="userName">[Username]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="sTime">[sTime]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="eTime">[eTime]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="resultPath">[resultPath]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="ssFileName">[ssFileName]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="testLogURL">[logTool_URL]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Psw">[Psw]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="channel">[Channel]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="ADID">[ADID]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Env">[Env]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="excelPath">[excelPath]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="ActType">[ActType]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vE_Time]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[Now.ToString("HH:mm:ss")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:LogMessage DisplayName="Fetching logs execution time message" sap:VirtualizedContainerService.HintSize="484,91" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;Fetching logs: Started at=&quot;+vS_Time+&quot;-----, Ended at=&quot;+vE_Time+ &quot;total=&quot; + Convert.ToString(DateTime.Parse(vE_Time) - DateTime.Parse(vS_Time))]" />
+          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_18">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vS_Time]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[Now.ToString("HH:mm:ss")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Validation Flow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="CommonFlow\ValidateTask.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="ValidateURL">[ValidateURL]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Channel">[Channel]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Trxn">[TrxnNum]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="DB_Name">[DB_Name]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="PTN">[PTN]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="ActType">[ActType]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="ESN">[ESN]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="resultPath">[resultPath]</InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="DB_status">[DB_status]</OutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_19">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[vE_Time]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[Now.ToString("HH:mm:ss")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:LogMessage DisplayName="DB Validation execution time message" sap:VirtualizedContainerService.HintSize="484,91" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;DB validation: Started at=&quot;+vS_Time+&quot;-----, Ended at=&quot;+vE_Time+ &quot;total=&quot; + Convert.ToString(DateTime.Parse(vE_Time) - DateTime.Parse(vS_Time))]" />
+          <If Condition="[DB_status.Equals(&quot;0&quot;)]" sap:VirtualizedContainerService.HintSize="484,51" sap2010:WorkflowViewState.IdRef="If_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_22">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[FinalFolder]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[resultPath+"-pass"]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_23">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[FinalFolder]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[resultPath+"-fail"]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Else>
+          </If>
+          <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Move" TargetType="si:Directory">
+            <InArgument x:TypeArguments="x:String">[resultPath]</InArgument>
+            <InArgument x:TypeArguments="x:String">[FinalFolder]</InArgument>
+          </InvokeMethod>
+          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_24" UnSafe="False" WorkflowFileName="CommonFlow\CompressResult.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InOutArgument x:TypeArguments="scg:List(x:String)" x:Key="attachmentList">[AttachmentList]</InOutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="FinalFolder">[FinalFolder]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="530,21" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="376,700" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Boolean" Name="isClosingApplication" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="CommonFlow\TakeScreenShot.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="ui:Window" x:Key="curAppWin">[curAppWin]</InArgument>
+                  <InOutArgument x:TypeArguments="scg:List(ui:Image)" x:Key="imageList">[imageList]</InOutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:CloseApplication DisplayName="Close Application" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="CloseApplication_9">
+                <ui:CloseApplication.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[curAppWin]" Id="329444f4-f90e-40a0-a0c1-d5208f4d19cc" TimeoutMS="5000" WaitForReady="COMPLETE" />
+                </ui:CloseApplication.Target>
+              </ui:CloseApplication>
+              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_23" UnSafe="False" WorkflowFileName="CommonFlow\SaveSSFile.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="resultPath">[resultPath]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="ssFileName">[ssFileName]</InArgument>
+                  <InArgument x:TypeArguments="scg:List(ui:Image)" x:Key="imageList">[imageList]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="BAN">[BAN]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="PTN">[PTN]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="SKU">[SKU]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="ESN">[ESN]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="TrxnNum">[TrxnNum]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="savingType">exception</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_13" />
+              <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="InvokeMethod_6" MethodName="Move" TargetType="si:Directory">
+                <InArgument x:TypeArguments="x:String">[resultPath]</InArgument>
+                <InArgument x:TypeArguments="x:String">[resultPath+"-fail"]</InArgument>
+              </InvokeMethod>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>

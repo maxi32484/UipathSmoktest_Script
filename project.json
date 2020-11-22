@@ -1,0 +1,57 @@
+{
+  "name": "RMS_Smoketest_UIpath",
+  "description": "Blank Process",
+  "main": "RHS_MainTask.xaml",
+  "dependencies": {
+    "Dictionary": "[2.1.1]",
+    "Microsoft.Activities.Extensions": "[2.0.6.9]",
+    "UiPath.Excel.Activities": "[2.9.3]",
+    "UiPath.Mail.Activities": "[1.9.3]",
+    "UiPath.System.Activities": "[20.10.1]",
+    "UiPath.UIAutomation.Activities": "[20.10.6]",
+    "UiPath.Word.Activities": "[1.5.3]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "20.10.2.0",
+  "projectVersion": "1.0.3",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "isPausable": true,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [],
+    "modernBehavior": false
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "RHS_MainTask.xaml",
+      "uniqueId": "f0a3a9be-f3ad-4199-9adb-88b7a4299eb6",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {}
+}

@@ -1,0 +1,945 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="UpgradeLine" this:UpgradeLine.ESN="089393204103298097" this:UpgradeLine.upgradeWith="TURN-IN" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="upgradePTN" Type="InArgument(x:String)" />
+    <x:Property Name="ESN" Type="InArgument(x:String)" />
+    <x:Property Name="upgradeWith" Type="InArgument(x:String)" />
+    <x:Property Name="curAppWin" Type="InOutArgument(ui:Window)" />
+    <x:Property Name="imageList" Type="InOutArgument(scg:List(ui:Image))" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>787,5291</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>UpgradeLine_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="23">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="36">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="UpgradeLine" sap:VirtualizedContainerService.HintSize="563,5126" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="isDisabled" />
+      <Variable x:TypeArguments="x:Boolean" Name="deviceSwapError" />
+      <Variable x:TypeArguments="x:Boolean" Name="isHuluExist" />
+      <Variable x:TypeArguments="x:Boolean" Name="isLeaseTermination" />
+      <Variable x:TypeArguments="x:Boolean" Name="isChecked" />
+      <Variable x:TypeArguments="x:Boolean" Name="IBpayOffWnd" />
+      <Variable x:TypeArguments="x:String" Name="SwapDisability" />
+      <Variable x:TypeArguments="x:Boolean" Name="MonthlyAdjustment" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'INPUT  searchSubscripti...'" sap:VirtualizedContainerService.HintSize="521,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[upgradePTN]">
+      <ui:TypeInto.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="57c0b177-9759-4ea9-b936-80fa68f829a4" InformativeScreenshot="adb0c8e42dbaa542a3b3a1e06d8d4913" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl id='searchSubscription' tag='INPUT' type='text' /&gt;" WaitForReady="COMPLETE">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+        </ui:Target>
+      </ui:TypeInto.Target>
+    </ui:TypeInto>
+    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  searchSubscripti...'" sap:VirtualizedContainerService.HintSize="521,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="453313f3-58f5-4263-8498-90fb480b550f" InformativeScreenshot="4f6588cfdbd740e677d54349ff38f955" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl id='searchSubscriptionButton' tag='INPUT' type='button' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:Click.Target>
+    </ui:Click>
+    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  deviceSwap'" sap:VirtualizedContainerService.HintSize="521,106" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6bbbb1f5-f964-40b3-ab36-2d17bd5f0919" InformativeScreenshot="eb4bdbac66e7adc40e1839734600b1f4" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl id='deviceSwap' tag='A' /&gt;" WaitForReady="COMPLETE">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+        </ui:Target>
+      </ui:Click.Target>
+    </ui:Click>
+    <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="1000" DisplayName="Select Item 'SELECT'" sap:VirtualizedContainerService.HintSize="521,134" sap2010:WorkflowViewState.IdRef="SelectItem_1" Item="[ESN]">
+      <ui:SelectItem.Items>
+        <scg:List x:TypeArguments="x:String" Capacity="4">
+          <x:String>- Select -</x:String>
+          <x:String>089393204103298097</x:String>
+        </scg:List>
+      </ui:SelectItem.Items>
+      <ui:SelectItem.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="38b483e5-386b-4d27-b03e-9f84f81f52d8" InformativeScreenshot="09f8cbe848ce74ac7839a93a7e49a412" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl idx='1' tag='SELECT' /&gt;" WaitForReady="COMPLETE">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+        </ui:Target>
+      </ui:SelectItem.Target>
+    </ui:SelectItem>
+    <ui:InterruptibleDoWhile DisplayName="Do While" sap:VirtualizedContainerService.HintSize="521,453" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+      <ui:InterruptibleDoWhile.Body>
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,288" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
+          <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="disabled" DisplayName="Get Attribute 'INPUT  prepareToSwap'" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
+            <ui:GetAttribute.Result>
+              <OutArgument x:TypeArguments="x:String">[isDisabled]</OutArgument>
+            </ui:GetAttribute.Result>
+            <ui:GetAttribute.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f5f81ec6-9370-49eb-80a2-c873b90e1b64" InformativeScreenshot="b36bc8292de5bcfe2b1cf5b5e5df924e" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl id='prepareToSwap' tag='INPUT' type='button' /&gt;" WaitForReady="NONE">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+              </ui:Target>
+            </ui:GetAttribute.Target>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:GetAttribute>
+        </Sequence>
+      </ui:InterruptibleDoWhile.Body>
+      <ui:InterruptibleDoWhile.Condition>
+        <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="isDisabled.Equals(&quot;1&quot;)" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
+      </ui:InterruptibleDoWhile.Condition>
+    </ui:InterruptibleDoWhile>
+    <ui:UiElementExists DisplayName="Element Exists 'rms_web.exe Device'" Exists="[deviceSwapError]" sap:VirtualizedContainerService.HintSize="521,106" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+      <ui:UiElementExists.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="9daedb74-970e-4a5a-9d5f-f36a1e2438d3" InformativeScreenshot="c0d1d8a164cf4ba0617b380a8fd27489" Selector="&lt;wnd app='rms_web.exe' cls='Internet Explorer_TridentDlgFrame' title='Device Swap Error ______________________________________________*' /&gt;" TimeoutMS="1500" WaitForReady="NONE" />
+      </ui:UiElementExists.Target>
+    </ui:UiElementExists>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke takeScreenShot flow" sap:VirtualizedContainerService.HintSize="521,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="CommonFlow\TakeScreenShot.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="ui:Window" x:Key="curAppWin">
+          <mva:VisualBasicValue x:TypeArguments="ui:Window" ExpressionText="curAppWin" />
+        </InArgument>
+        <InOutArgument x:TypeArguments="scg:List(ui:Image)" x:Key="imageList">
+          <mva:VisualBasicReference x:TypeArguments="scg:List(ui:Image)" ExpressionText="imageList" />
+        </InOutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InvokeWorkflowFile>
+    <If Condition="[deviceSwapError]" DisplayName="If DeviceSwapError Message" sap:VirtualizedContainerService.HintSize="521,254" sap2010:WorkflowViewState.IdRef="If_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT">
+          <ui:Click.CursorPosition>
+            <ui:CursorPosition Position="Center">
+              <ui:CursorPosition.OffsetX>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:CursorPosition.OffsetX>
+              <ui:CursorPosition.OffsetY>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:CursorPosition.OffsetY>
+            </ui:CursorPosition>
+          </ui:Click.CursorPosition>
+          <ui:Click.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="83414908-21ad-49c0-9925-27b8cbf5d1ac" InformativeScreenshot="bf5f4d147587a12de59ec759d1a14f68" Selector="&lt;html app='rms_web.exe' title='Device Swap Error _____________________________________________________' /&gt;&lt;webctrl tag='INPUT' type='submit' /&gt;" WaitForReady="COMPLETE">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+            </ui:Target>
+          </ui:Click.Target>
+        </ui:Click>
+      </If.Then>
+    </If>
+    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="521,22" sap2010:WorkflowViewState.IdRef="Delay_2" />
+    <ui:UiElementExists DisplayName="IB payoff window exist" Exists="[IBpayOffWnd]" sap:VirtualizedContainerService.HintSize="521,106" sap2010:WorkflowViewState.IdRef="UiElementExists_5">
+      <ui:UiElementExists.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fec48b5a-96bd-4e97-a508-9d78e2316039" InformativeScreenshot="28a0de5385bff78e839479881fcaf30c" Selector="&lt;wnd app='rms_web.exe' cls='Internet Explorer_TridentDlgFrame' title='IB PayOff -- Webpage Dialog' /&gt;" TimeoutMS="2000">
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:UiElementExists.Target>
+    </ui:UiElementExists>
+    <If Condition="[IBpayOffWnd]" DisplayName="If IBpayOff exist" sap:VirtualizedContainerService.HintSize="521,254" sap2010:WorkflowViewState.IdRef="If_10">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'FRAME'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_16" KeyModifiers="None" MouseButton="BTN_LEFT">
+          <ui:Click.CursorPosition>
+            <ui:CursorPosition Position="Center">
+              <ui:CursorPosition.OffsetX>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:CursorPosition.OffsetX>
+              <ui:CursorPosition.OffsetY>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:CursorPosition.OffsetY>
+            </ui:CursorPosition>
+          </ui:Click.CursorPosition>
+          <ui:Click.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="38fd9856-86e4-4372-95ed-fe8dac4efbbf" InformativeScreenshot="c8df013f2115f8e190839d3dc3f75dfb" Selector="&lt;html app='rms_web.exe' title='IB PayOff' /&gt;&lt;webctrl tag='FRAME' /&gt;">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+              <ui:Target.WaitForReady>
+                <InArgument x:TypeArguments="ui:WaitForReady" />
+              </ui:Target.WaitForReady>
+            </ui:Target>
+          </ui:Click.Target>
+        </ui:Click>
+      </If.Then>
+    </If>
+    <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="checked" DisplayName="Get Attribute 'INPUT  Keep'" sap:VirtualizedContainerService.HintSize="521,134" sap2010:WorkflowViewState.IdRef="GetAttribute_2">
+      <ui:GetAttribute.Result>
+        <OutArgument x:TypeArguments="x:Boolean">[isChecked]</OutArgument>
+      </ui:GetAttribute.Result>
+      <ui:GetAttribute.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a77718f9-dab7-45eb-ab94-92cb9d312cd0" InformativeScreenshot="9f0267f0f1efd58462a7cb8e8d1c97a1" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl id='Keep' tag='INPUT' type='radio' /&gt;" TimeoutMS="2000">
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:GetAttribute.Target>
+    </ui:GetAttribute>
+    <If Condition="[not isChecked]" DisplayName="If Keep Current Coverage disabled" sap:VirtualizedContainerService.HintSize="521,254" sap2010:WorkflowViewState.IdRef="If_9">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  Keep'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_15" KeyModifiers="None" MouseButton="BTN_LEFT">
+          <ui:Click.CursorPosition>
+            <ui:CursorPosition Position="Center">
+              <ui:CursorPosition.OffsetX>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:CursorPosition.OffsetX>
+              <ui:CursorPosition.OffsetY>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:CursorPosition.OffsetY>
+            </ui:CursorPosition>
+          </ui:Click.CursorPosition>
+          <ui:Click.Target>
+            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="dc05f7b0-4a63-427b-b97a-779dadfb0bf6" InformativeScreenshot="9f0267f0f1efd58462a7cb8e8d1c97a1" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl id='Keep' tag='INPUT' type='radio' /&gt;" WaitForReady="COMPLETE">
+              <ui:Target.TimeoutMS>
+                <InArgument x:TypeArguments="x:Int32" />
+              </ui:Target.TimeoutMS>
+            </ui:Target>
+          </ui:Click.Target>
+        </ui:Click>
+      </If.Then>
+    </If>
+    <Sequence DisplayName="Extra Device--NO" sap:VirtualizedContainerService.HintSize="521,1009" sap2010:WorkflowViewState.IdRef="Sequence_12">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="nodes" />
+        <Variable x:TypeArguments="x:Int32" Name="nodeIndx" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:FindChildren Children="[nodes]" DisplayName="Find Children 'TD'" Filter="&lt;webctrl id='*no'/&gt;" sap:VirtualizedContainerService.HintSize="412,106" sap2010:WorkflowViewState.IdRef="FindChildren_1" Scope="FIND_DESCENDANTS">
+        <ui:FindChildren.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fda35941-7d7f-41d4-9126-e315b9ab9546" InformativeScreenshot="d5c6ead6f7de49dbf583d2e6163f4306" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl css-selector='body&amp;gt;form&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' idx='1' parentid='deviceSwapForm' tableCol='21' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='11' tag='TD' /&gt;">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:FindChildren.Target>
+      </ui:FindChildren>
+      <Assign sap:VirtualizedContainerService.HintSize="412,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Int32">[nodeIndx]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Int32">0</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:InterruptibleWhile DisplayName="While" sap:VirtualizedContainerService.HintSize="412,671" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+        <ui:InterruptibleWhile.Body>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,506" sap2010:WorkflowViewState.IdRef="Sequence_13">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="ui:UiElement" Name="curNode" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="ui:UiElement">[curNode]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="ui:UiElement">[nodes(nodeIndx)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1500" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="Click_23" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[curNode]" Id="316a06b6-8d9d-469a-a2ac-88044d615d5b" WaitForReady="COMPLETE">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[nodeIndx]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[nodeIndx+1]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:FindChildren Children="[nodes]" DisplayName="Find Children 'TD'" Filter="&lt;webctrl id='*no'/&gt;" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="FindChildren_3" Scope="FIND_DESCENDANTS">
+              <ui:FindChildren.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fda35941-7d7f-41d4-9126-e315b9ab9546" InformativeScreenshot="d5c6ead6f7de49dbf583d2e6163f4306" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl css-selector='body&amp;gt;form&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' idx='1' parentid='deviceSwapForm' tableCol='21' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='11' tag='TD' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:FindChildren.Target>
+            </ui:FindChildren>
+          </Sequence>
+        </ui:InterruptibleWhile.Body>
+        <ui:InterruptibleWhile.Condition>
+          <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="nodeIndx&lt;nodes.Count" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
+        </ui:InterruptibleWhile.Condition>
+      </ui:InterruptibleWhile>
+    </Sequence>
+    <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="disabled" DisplayName="Get Attribute 'INPUT'" sap:VirtualizedContainerService.HintSize="521,134" sap2010:WorkflowViewState.IdRef="GetAttribute_3">
+      <ui:GetAttribute.Result>
+        <OutArgument x:TypeArguments="x:String">[SwapDisability]</OutArgument>
+      </ui:GetAttribute.Result>
+      <ui:GetAttribute.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="93ec8efc-2f0a-45b3-80a0-d6036a189d54" InformativeScreenshot="a93445c5516aeadc78bc07c6384de26a" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl name='swap' tag='INPUT' type='button' /&gt;" WaitForReady="INTERACTIVE">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+        </ui:Target>
+      </ui:GetAttribute.Target>
+    </ui:GetAttribute>
+    <If Condition="[SwapDisability.Equals(&quot;0&quot;)]" DisplayName="If Swap button enable" sap:VirtualizedContainerService.HintSize="521,51" sap2010:WorkflowViewState.IdRef="If_13">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="1159,3442" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:Boolean" Name="MutualExclusiveCredit" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT'" sap:VirtualizedContainerService.HintSize="1117,106" sap2010:WorkflowViewState.IdRef="Click_6" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3da3fc6b-69c6-469a-970e-f7c00b6c3450" InformativeScreenshot="a93445c5516aeadc78bc07c6384de26a" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl name='swap' tag='INPUT' type='button' /&gt;" WaitForReady="COMPLETE">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+              </ui:Target>
+            </ui:Click.Target>
+          </ui:Click>
+          <ui:UiElementExists DisplayName="Element Exists 'rms_web.exe Mutual'" Exists="[MutualExclusiveCredit]" sap:VirtualizedContainerService.HintSize="1117,106" sap2010:WorkflowViewState.IdRef="UiElementExists_6">
+            <ui:UiElementExists.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2a6d94a9-8368-48ce-b198-24af3c7ba053" InformativeScreenshot="66c2597561cf474f6f3cca53e1867b48" Selector="&lt;wnd app='rms_web.exe' cls='Internet Explorer_TridentDlgFrame' title='Mutual Exclusive Credit Options -- Webpage Dialog' /&gt;" TimeoutMS="1500">
+                <ui:Target.WaitForReady>
+                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                </ui:Target.WaitForReady>
+              </ui:Target>
+            </ui:UiElementExists.Target>
+          </ui:UiElementExists>
+          <If Condition="[MutualExclusiveCredit]" DisplayName="If Mutual Exclusive Credit Exist" sap:VirtualizedContainerService.HintSize="1117,1126" sap2010:WorkflowViewState.IdRef="If_12">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="526,978" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:Boolean" Name="MacUpdate" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click first button as default" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="Click_17" KeyModifiers="None" MouseButton="BTN_LEFT">
+                  <ui:Click.CursorPosition>
+                    <ui:CursorPosition Position="Center">
+                      <ui:CursorPosition.OffsetX>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetX>
+                      <ui:CursorPosition.OffsetY>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetY>
+                    </ui:CursorPosition>
+                  </ui:Click.CursorPosition>
+                  <ui:Click.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="632c3afa-49ac-4999-8d70-cadbc1737bb2" InformativeScreenshot="c2482c63017eb88050918c1a1893a3a1" Selector="&lt;html app='rms_web.exe' title='Mutual Exclusive Credit Options' /&gt;&lt;webctrl idx='1' tag='INPUT' type='radio' /&gt;">
+                      <ui:Target.TimeoutMS>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:Target.TimeoutMS>
+                      <ui:Target.WaitForReady>
+                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                      </ui:Target.WaitForReady>
+                    </ui:Target>
+                  </ui:Click.Target>
+                </ui:Click>
+                <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey 'rms_web.exe Mutual'" sap:VirtualizedContainerService.HintSize="484,154" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="end" KeyModifiers="Ctrl" SpecialKey="True">
+                  <ui:SendHotkey.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a11c2446-4760-4b7b-a757-c4b250fbc3a3" InformativeScreenshot="c7e4fc01d31c7511263c8bf6315455ed" Selector="&lt;wnd app='rms_web.exe' cls='Internet Explorer_TridentDlgFrame' title='Mutual Exclusive Credit Options -- Webpage Dialog' /&gt;">
+                      <ui:Target.TimeoutMS>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:Target.TimeoutMS>
+                      <ui:Target.WaitForReady>
+                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                      </ui:Target.WaitForReady>
+                    </ui:Target>
+                  </ui:SendHotkey.Target>
+                </ui:SendHotkey>
+                <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  continueBtn'" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="Click_18" KeyModifiers="None" MouseButton="BTN_LEFT">
+                  <ui:Click.CursorPosition>
+                    <ui:CursorPosition Position="Center">
+                      <ui:CursorPosition.OffsetX>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetX>
+                      <ui:CursorPosition.OffsetY>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetY>
+                    </ui:CursorPosition>
+                  </ui:Click.CursorPosition>
+                  <ui:Click.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8f56b59e-f109-43e2-91a3-8708188e59c5" InformativeScreenshot="d7a0c4a8001f49b4199222b81a8ae03b" Selector="&lt;html app='rms_web.exe' title='Mutual Exclusive Credit Options' /&gt;&lt;webctrl tag='INPUT' type='button' /&gt;" WaitForReady="COMPLETE">
+                      <ui:Target.TimeoutMS>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:Target.TimeoutMS>
+                    </ui:Target>
+                  </ui:Click.Target>
+                </ui:Click>
+                <ui:UiElementExists DisplayName="Element Exists 'rms_web.exe Current'" Exists="[MacUpdate]" sap:VirtualizedContainerService.HintSize="484,106" sap2010:WorkflowViewState.IdRef="UiElementExists_7">
+                  <ui:UiElementExists.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c40c7e39-6e53-4501-ae35-53489e4a7f30" InformativeScreenshot="8a36fbb218daf560073a0ee344945951" Selector="&lt;wnd app='rms_web.exe' cls='Internet Explorer_TridentDlgFrame' title='Current Mac Update -- Webpage Dialog' /&gt;" TimeoutMS="1000">
+                      <ui:Target.WaitForReady>
+                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                      </ui:Target.WaitForReady>
+                    </ui:Target>
+                  </ui:UiElementExists.Target>
+                </ui:UiElementExists>
+                <If Condition="[MacUpdate]" sap:VirtualizedContainerService.HintSize="484,254" sap2010:WorkflowViewState.IdRef="If_11">
+                  <If.Then>
+                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  okBtn'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f54bdcde-2aa1-43d7-8acc-379f00b76a78" InformativeScreenshot="03f9ec3d0f9c0ce002b5ef45246c67a5" Selector="&lt;html app='rms_web.exe' title='Current Mac Update' /&gt;&lt;webctrl id='okBtn' tag='INPUT' type='button' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:Click.Target>
+                    </ui:Click>
+                  </If.Then>
+                </If>
+              </Sequence>
+            </If.Then>
+          </If>
+          <ui:UiElementExists sap2010:Annotation.AnnotationText="Now just checked Lease termination, have to add IB Termination in the future" DisplayName="Element Exists 'rms_web.exe Lease'" Exists="[isLeaseTermination]" sap:VirtualizedContainerService.HintSize="1117,148" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
+            <ui:UiElementExists.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c8b41fb2-b824-45cc-aa3a-16ac3680ddbf" InformativeScreenshot="8db7716e2c5dcf0a4673490d8fa5ead8" Selector="&lt;wnd app='rms_web.exe' cls='Internet Explorer_TridentDlgFrame' title='Lease Termination -- Webpage Dialog' /&gt;" TimeoutMS="3000">
+                <ui:Target.WaitForReady>
+                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                </ui:Target.WaitForReady>
+              </ui:Target>
+            </ui:UiElementExists.Target>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:UiElementExists>
+          <If Condition="[isLeaseTermination]" DisplayName="Select Terminate Type" sap:VirtualizedContainerService.HintSize="1117,1704" sap2010:WorkflowViewState.IdRef="If_6">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="972,1556" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If Condition="[upgradeWith.ToUpper().Equals(&quot;TURN-IN&quot;)]" DisplayName="Select Upgrade Type" sap:VirtualizedContainerService.HintSize="930,1166" sap2010:WorkflowViewState.IdRef="If_8">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence sap:VirtualizedContainerService.HintSize="401,1018" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  turnin'" sap:VirtualizedContainerService.HintSize="359,106" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT">
+                        <ui:Click.CursorPosition>
+                          <ui:CursorPosition Position="Center">
+                            <ui:CursorPosition.OffsetX>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetX>
+                            <ui:CursorPosition.OffsetY>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetY>
+                          </ui:CursorPosition>
+                        </ui:Click.CursorPosition>
+                        <ui:Click.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="60786474-3ead-4c77-9722-e1211f914327" InformativeScreenshot="ef59fcf3f35b420f67a29733c0af3561" Selector="&lt;html app='rms_web.exe' title='Lease Termination' /&gt;&lt;webctrl idx='1' tag='INPUT' type='button' /&gt;" WaitForReady="COMPLETE">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                          </ui:Target>
+                        </ui:Click.Target>
+                      </ui:Click>
+                      <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Item 'SELECT  answer1'" sap:VirtualizedContainerService.HintSize="359,134" sap2010:WorkflowViewState.IdRef="SelectItem_5" Item="Yes">
+                        <ui:SelectItem.Items>
+                          <scg:List x:TypeArguments="x:String" Capacity="4">
+                            <x:String>--Select One--</x:String>
+                            <x:String>Yes</x:String>
+                            <x:String>No</x:String>
+                          </scg:List>
+                        </ui:SelectItem.Items>
+                        <ui:SelectItem.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2f75a6af-db46-483e-b16b-d23caaa4fa68" InformativeScreenshot="ed636819f4668bf8ce7c46c6037a156b" Selector="&lt;html app='rms_web.exe' title='Device Condition Questionnaire' /&gt;&lt;webctrl idx='1' tag='SELECT' /&gt;" WaitForReady="COMPLETE">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                          </ui:Target>
+                        </ui:SelectItem.Target>
+                      </ui:SelectItem>
+                      <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Item 'SELECT  answer2'" sap:VirtualizedContainerService.HintSize="359,134" sap2010:WorkflowViewState.IdRef="SelectItem_6" Item="Yes">
+                        <ui:SelectItem.Items>
+                          <scg:List x:TypeArguments="x:String" Capacity="4">
+                            <x:String>--Select One--</x:String>
+                            <x:String>Yes</x:String>
+                            <x:String>No</x:String>
+                          </scg:List>
+                        </ui:SelectItem.Items>
+                        <ui:SelectItem.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5ace0113-2e47-4595-a908-810fd078d379" InformativeScreenshot="bc30a5369aecf72f7cf12b9c3643d5e5" Selector="&lt;html app='rms_web.exe' title='Device Condition Questionnaire' /&gt;&lt;webctrl id='answer2' tag='SELECT' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:SelectItem.Target>
+                      </ui:SelectItem>
+                      <ui:SelectItem AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Select Item 'SELECT  answer3'" sap:VirtualizedContainerService.HintSize="359,134" sap2010:WorkflowViewState.IdRef="SelectItem_7" Item="No">
+                        <ui:SelectItem.Items>
+                          <scg:List x:TypeArguments="x:String" Capacity="4">
+                            <x:String>--Select One--</x:String>
+                            <x:String>Yes</x:String>
+                            <x:String>No</x:String>
+                          </scg:List>
+                        </ui:SelectItem.Items>
+                        <ui:SelectItem.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="11a97c1b-79f9-483f-b3c6-54e639c43bbb" InformativeScreenshot="59f50e0ecdd7276482efd9ab85b79562" Selector="&lt;html app='rms_web.exe' title='Device Condition Questionnaire' /&gt;&lt;webctrl id='answer3' tag='SELECT' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:SelectItem.Target>
+                      </ui:SelectItem>
+                      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke takeScreenShot flow" sap:VirtualizedContainerService.HintSize="359,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="CommonFlow\TakeScreenShot.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="ui:Window" x:Key="curAppWin">
+                            <mva:VisualBasicValue x:TypeArguments="ui:Window" ExpressionText="curAppWin" />
+                          </InArgument>
+                          <InOutArgument x:TypeArguments="scg:List(ui:Image)" x:Key="imageList">
+                            <mva:VisualBasicReference x:TypeArguments="scg:List(ui:Image)" ExpressionText="imageList" />
+                          </InOutArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:InvokeWorkflowFile>
+                      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  continue'" sap:VirtualizedContainerService.HintSize="359,106" sap2010:WorkflowViewState.IdRef="Click_12" KeyModifiers="None" MouseButton="BTN_LEFT">
+                        <ui:Click.CursorPosition>
+                          <ui:CursorPosition Position="Center">
+                            <ui:CursorPosition.OffsetX>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetX>
+                            <ui:CursorPosition.OffsetY>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetY>
+                          </ui:CursorPosition>
+                        </ui:Click.CursorPosition>
+                        <ui:Click.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f38e75a2-5660-40cf-987a-b7c8cbe8d13a" InformativeScreenshot="caa4ba370645749cdf3e6af1d643b2fa" Selector="&lt;html app='rms_web.exe' title='Device Condition Questionnaire' /&gt;&lt;webctrl id='continue' tag='INPUT' type='button' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:Click.Target>
+                      </ui:Click>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <If Condition="[upgradeWith.ToUpper().Equals(&quot;PURCHASE&quot;)]" sap:VirtualizedContainerService.HintSize="484,254" sap2010:WorkflowViewState.IdRef="If_7">
+                      <If.Then>
+                        <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  purchase'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_13" KeyModifiers="None" MouseButton="BTN_LEFT">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition Position="Center">
+                              <ui:CursorPosition.OffsetX>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetX>
+                              <ui:CursorPosition.OffsetY>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:CursorPosition.OffsetY>
+                            </ui:CursorPosition>
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="cce1ef5f-9657-4a95-8906-e8fbed315149" InformativeScreenshot="e04e5115cf24899b6d20482784ebd845" Selector="&lt;html app='rms_web.exe' title='Lease Termination' /&gt;&lt;webctrl id='purchase' tag='INPUT' type='button' /&gt;" WaitForReady="COMPLETE">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                            </ui:Target>
+                          </ui:Click.Target>
+                        </ui:Click>
+                      </If.Then>
+                    </If>
+                  </If.Else>
+                </If>
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke takeScreenShot flow" sap:VirtualizedContainerService.HintSize="930,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="CommonFlow\TakeScreenShot.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="ui:Window" x:Key="curAppWin">
+                      <mva:VisualBasicValue x:TypeArguments="ui:Window" ExpressionText="curAppWin" />
+                    </InArgument>
+                    <InOutArgument x:TypeArguments="scg:List(ui:Image)" x:Key="imageList">
+                      <mva:VisualBasicReference x:TypeArguments="scg:List(ui:Image)" ExpressionText="imageList" />
+                    </InOutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeWorkflowFile>
+                <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  continue'" sap:VirtualizedContainerService.HintSize="930,106" sap2010:WorkflowViewState.IdRef="Click_14" KeyModifiers="None" MouseButton="BTN_LEFT">
+                  <ui:Click.CursorPosition>
+                    <ui:CursorPosition Position="Center">
+                      <ui:CursorPosition.OffsetX>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetX>
+                      <ui:CursorPosition.OffsetY>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetY>
+                    </ui:CursorPosition>
+                  </ui:Click.CursorPosition>
+                  <ui:Click.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e72e8403-5e46-4a1e-bde9-260f3ca31ea7" InformativeScreenshot="a8c89389ae0ee06ae8323395d9d14581" Selector="&lt;html app='rms_web.exe' title='Lease Termination' /&gt;&lt;webctrl id='continue' tag='INPUT' type='button' /&gt;" WaitForReady="COMPLETE">
+                      <ui:Target.TimeoutMS>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:Target.TimeoutMS>
+                    </ui:Target>
+                  </ui:Click.Target>
+                </ui:Click>
+              </Sequence>
+            </If.Then>
+          </If>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,289" sap2010:WorkflowViewState.IdRef="Sequence_9">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  prepareToSwap'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_20" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0395522a-b90e-4d4e-b413-c8442daf0cd2" InformativeScreenshot="e50c5aff6536c59c8f7abd6def2b6ea8" Selector="&lt;html app='rms_web.exe' title='RMS Front Office' /&gt;&lt;webctrl id='prepareToSwap' tag='INPUT' type='button' /&gt;">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+                <ui:Target.WaitForReady>
+                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                </ui:Target.WaitForReady>
+              </ui:Target>
+            </ui:Click.Target>
+          </ui:Click>
+          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,51" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+            <ui:CommentOut.Body>
+              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="478,143" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                  <ui:CommentOut.Body>
+                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,204" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" WorkflowFileName="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                    </Sequence>
+                  </ui:CommentOut.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:CommentOut>
+              </Sequence>
+            </ui:CommentOut.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:CommentOut>
+        </Sequence>
+      </If.Else>
+    </If>
+    <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="521,22" sap2010:WorkflowViewState.IdRef="Delay_3" />
+    <ui:UiElementExists DisplayName="Element Exists 'rms_web.exe '" Exists="[MonthlyAdjustment]" sap:VirtualizedContainerService.HintSize="521,106" sap2010:WorkflowViewState.IdRef="UiElementExists_8">
+      <ui:UiElementExists.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2a521898-c35e-4aca-b092-52ae1e49bcdf" InformativeScreenshot="1529f1d4e38a4bd0b09bc6845d6073a1" Selector="&lt;wnd app='rms_web.exe' cls='Internet Explorer_TridentDlgFrame' title='________________________________________________________________*' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+      </ui:UiElementExists.Target>
+    </ui:UiElementExists>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="521,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Monthly Adjustment changes=&quot;+MonthlyAdjustment.ToString()]" />
+    <If Condition="[MonthlyAdjustment]" DisplayName="If Monthly Adjustment is there" sap:VirtualizedContainerService.HintSize="521,686" sap2010:WorkflowViewState.IdRef="If_14">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,538" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:Int32" Name="isOkVisible" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'DIV'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_22" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="fd43c1a7-1832-4c69-9701-7b2e7043ba37" InformativeScreenshot="c71e00b4bf07bde97318eb22ee61baa5" Selector="&lt;html app='rms_web.exe' title='____________________________________________________________________________________________' /&gt;&lt;webctrl css-selector='body&amp;gt;form&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div' idx='1' tag='DIV' /&gt;" WaitForReady="COMPLETE">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+              </ui:Target>
+            </ui:Click.Target>
+          </ui:Click>
+          <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey 'rms_web.exe '" sap:VirtualizedContainerService.HintSize="334,154" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="end" KeyModifiers="Ctrl" SpecialKey="True">
+            <ui:SendHotkey.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3c3e34e7-ff1e-440d-97b5-f6c8f94a39b1" InformativeScreenshot="e348ad1bd526d32465d34fb8c50c2622" Selector="&lt;wnd app='rms_web.exe' cls='Internet Explorer_TridentDlgFrame' title='________________________________________________________________*' /&gt;">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+                <ui:Target.WaitForReady>
+                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                </ui:Target.WaitForReady>
+              </ui:Target>
+            </ui:SendHotkey.Target>
+          </ui:SendHotkey>
+          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  okButton'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_21" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a9a43d60-db41-4e24-a0a4-0f7025887cc7" InformativeScreenshot="693bcd3edde22fb53767ffd4dc9d5db6" Selector="&lt;html app='rms_web.exe' title='____________________________________________________________________________________________' /&gt;&lt;webctrl tag='INPUT' type='button' /&gt;" WaitForReady="COMPLETE">
+                <ui:Target.TimeoutMS>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:Target.TimeoutMS>
+              </ui:Target>
+            </ui:Click.Target>
+          </ui:Click>
+        </Sequence>
+      </If.Then>
+    </If>
+  </Sequence>
+</Activity>
